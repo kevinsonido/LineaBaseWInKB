@@ -1,0 +1,263 @@
+<!--se hereda lo base html-->
+{% extends 'ProyectoLineaBase/BaseHTML.html' %}
+{% load static %}
+<!--que cargue todo lo que tenemos --> 
+ {% block content %}
+
+ <div class="container-scroller">
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="page-header">
+              <h3 class="page-title"> Linea Base </h3>
+            </div>
+            <div class="row">
+              <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Escanear Linea Base</h4>
+                    <div class="template-demo">
+                      <div class="card" style="width: 25rem;">
+                        <div class="card-header">
+                          Datos del sistema
+                        </div>
+                        <!--tabla de datos del sistema-->
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">Fecha actual: {{fecha_actual.day}} / {{fecha_actual.month}} /{{fecha_actual.year}}</li>
+                          <li class="list-group-item">Nombre del Sistema : {{system_name}} </li>
+                          <li class="list-group-item">Sistema Operativo : {{Os_name}} </li>
+                          <li class="list-group-item">Version del Sistema Operativo. : {{Os_version}} </li>
+                          <li class="list-group-item">Nombre en la Red : {{system_name2}} </li>
+                          <li class="list-group-item">Usuario logueado : {{usuariologueado}} </li>
+                        </ul>
+                      </div>
+                      <!--inicio Tabla totales-->
+                      <div>
+                          <div class="card-header">
+                            Totales
+                          </div>
+                          <ul class="list-group col-3">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              Fallidos
+                              <span class="badge badge-primary badge-pill">{{Fallidos}}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                              Aceptados
+                              <span class="badge badge-primary badge-pill">{{Aceptados}}</span>
+                            </li>  
+                          </ul>  
+                      </div>
+                      <!--FIN Tabla totales--> 
+                      
+                      <div class="btn-group" role="group" aria-label="Basic example">
+                     
+                          <a type="button" class="btn btn-success btn-fw" href={% url 'controlesLineaBase'%}>Escanear</a>    
+                        <!--dirige a boton reporte-->
+                            <a href="{% url 'exportar_a_excel'%}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Generar Reporte</a>
+                         <!--FIN dirige a boton reporte-->
+                      </div>
+                    </div>
+                </div>
+              </div>
+                   <!--Tabla de resultados de Account Policies-->
+          </div>
+          <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Resultados de controles</h4>
+                <p class="card-description">Resultados fallidos o aprobados</p>
+                <div class="template-demo">
+                  <div class="card" style="width: 50rem;">
+                    <div class="card-header">
+                    AccountPolicies
+                    <div>
+                      <a type="button" class="btn btn-success btn-fw" href="{% url 'cambiartodos' %}">Aplicar a todos</a>    
+                    </div>
+                    </div>
+                  </div>
+                </div>
+          
+            <!--tabla escaneo-->
+          </div> <!-- fin tabla escaneo-->
+
+            <!--Inicio tabla AccountLocal-->
+            <div>
+              <table class="table table-dark">
+                <div class="table-responsive">
+                  <div class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th >ID</th>
+                        <th >Titulo</th>
+                        <th >Estado</th>
+                       
+                      </tr>
+                      <tbody>
+                          <tr>
+                            <td>1</td>  
+                            <td>MinimunPasswordAge</td> 
+                            <td>{{minpass}}</td> 
+                            <td>
+                              <a type="button" class="badge badge-outline-success" href="{% url 'cambiarvalorMinimunPasswordAge'%}">Aplicar</a>
+                              
+                            </td>
+                            <td>
+                              <a type="button" class="badge badge-outline-warning" href="{% url 'rollbackminimunpassage'%}">Rollback</a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>2</td>  
+                            <td>MinimumPasswordLength</td> 
+                            <td>{{minpassle}}</td> 
+                            <td>
+                              <a type="button" class="badge badge-outline-success" href="{% url 'cambiarvalorminumpasslenght'%}">Aplicar</a>
+                            </td>
+                            <td>
+                              <a type="button" class="badge badge-outline-warning" href="{% url 'rollbackminimunpasslenght' %}">Rollback</a>
+                            </td> 
+                          </tr>
+                          <tr>
+                            <td>3</td>  
+                            <td>PasswordComplexity</td> 
+                            <td>{{passcomplex}}</td> 
+                            <td>
+                              <a type="button" class="badge badge-outline-success" href="">Aplicar</a>
+                            </td>
+                            <td>
+                              <a type="button" class="badge badge-outline-warning" href="">Rollback</a>
+                            </td>  
+                          </tr>
+                          <tr>
+                            <td>4</td>  
+                            <td>ClearTextPassword</td> 
+                            <td>{{cltpass}}</td>
+                            <td>
+                              <a type="button" class="badge badge-outline-success" href="">Aplicar</a>
+                            </td>
+                            <td>
+                              <a type="button" class="badge badge-outline-warning" href="">Rollback</a>
+                            </td>   
+                          </tr>
+                          <tr>
+                            <td>5</td>  
+                            <td>LockoutDuration</td> 
+                            <td>{{lockdur}}</td>   
+                            <td>
+                              <a type="button" class="badge badge-outline-success" href="{% url 'cambiarvalorlockooutduration'%}">Aplicar</a>
+                            </td>
+                            <td>
+                              <a type="button" class="badge badge-outline-warning" href="{% url 'rollbacklockooutduration'%}">Rollback</a>
+                            </td>
+                          </tr>
+                        </tbody>
+                  </div>
+                </div>
+              </table>
+            </div> 
+          </div>
+        </div>
+            <!--Fin tabla-->
+              <!--Inicio tabla LocalPolicies-->
+              <div class="card-header">
+                LocalPolicies
+                </div>
+              <div>
+                <table class="table table-dark">
+                  <div class="table-responsive">
+                    <div class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th >ID</th>
+                          <th >Titulo</th>
+                          <th >Estado</th>
+                        </tr>
+                        <tbody>
+                            <tr>
+                              <td>1</td>  
+                              <td>Access this computer from the network</td> 
+                              <td>{{acccompu}}</td>  
+                              <td>
+                                <a type="button" class="badge badge-outline-success" href="">Aplicar</a>
+                              </td>
+                              <td>
+                                <a type="button" class="badge badge-outline-warning" href="">Rollback</a>
+                              </td> 
+                            </tr>
+                            <tr>
+                              <td>2</td>  
+                              <td>Deny access to this computer from the network </td> 
+                              <td>{{denyacce}}</td> 
+                              <td>
+                                <a type="button" class="badge badge-outline-success" href="">Aplicar</a>
+                              </td>
+                              <td>
+                                <a type="button" class="badge badge-outline-warning" href="">Rollback</a>
+                              </td>  
+                            </tr>
+                            <tr>
+                              <td>3</td>  
+                              <td>Allow log on through Remote Desktop Services</td> 
+                              <td>{{allowlo}}</td> 
+                              <td>
+                                <a type="button" class="badge badge-outline-success" href="">Aplicar</a>
+                              </td>
+                              <td>
+                                <a type="button" class="badge badge-outline-warning" href="">Rollback</a>
+                              </td>  
+                            </tr>
+                            <tr>
+                              <td>4</td>  
+                              <td>Interactive logon: Prompt user to change password before expiration</td> 
+                              <td>{{passexperi}}</td>  
+                              <td>
+                                <a type="button" class="badge badge-outline-success" href="">Aplicar</a>
+                              </td>
+                              <td>
+                                <a type="button" class="badge badge-outline-warning" href="">Rollback</a>
+                              </td> 
+                            </tr>
+                            <tr>
+                              <td>5</td>  
+                              <td>Interactive logon: Smart card removal behavior</td> 
+                              <td>{{smartcar}}</td> 
+                              <td>
+                                <a type="button" class="badge badge-outline-success" href="">Aplicar</a>
+                              </td>
+                              <td>
+                                <a type="button" class="badge badge-outline-warning" href="">Rollback</a>
+                              </td>  
+                            </tr>
+                            <tr>
+                              <td>6</td>  
+                              <td>Do not display last user name</td> 
+                              <td>{{dontdisplays}}</td> 
+                              <td>
+                                <a type="button" class="badge badge-outline-success" href="">Aplicar</a>
+                              </td>
+                              <td>
+                                <a type="button" class="badge badge-outline-warning" href="">Rollback</a>
+                              </td> 
+                            </tr>
+                          </tbody>
+                    </div>
+                  </div>
+                </table>
+              </div> 
+              <!--Fin tabla-->
+    
+             
+          </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:../../partials/_footer.html -->
+         
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+   
+   
+   
+{% endblock %} 

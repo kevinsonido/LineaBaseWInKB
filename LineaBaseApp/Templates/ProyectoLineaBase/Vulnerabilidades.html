@@ -1,0 +1,60 @@
+<!--se hereda lo base html-->
+{% extends 'ProyectoLineaBase/BaseHTML.html' %}
+{% load static %}
+<!--que cargue todo lo que tenemos --> 
+ {% block content %}
+
+
+
+ <div class="container-scroller">
+  <!-- partial -->
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="page-header">
+        <h3 class="page-title"> Linea Base </h3>
+      </div>
+      <div class="row">
+        <div class="col-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Escanear Vulnerabilidades</h4>
+              <p class="card-description">Se genera Vulnerabilidades</p>
+              <div class="template-demo">
+                <div class="card" style="width: 50rem;">
+                  <div class="card-header">
+                    Datos del sistema
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Fecha actual: {{fecha_actual.day}} / {{fecha_actual.month}} /{{fecha_actual.year}}</li>
+                    <li class="list-group-item">Nombre del Sistema : {{system_name}} </li>
+                    <li class="list-group-item">Sistema Operativo : {{Os_name}} </li>
+                    <li class="list-group-item">Version del Sistema Operativo. : {{Os_version}} </li>
+                    <li class="list-group-item">Nombre en la Red : {{system_name2}} </li>
+                    <li class="list-group-item">Usuario logueado : {{usuariologueado}} </li>
+                  
+                  </ul>
+                </div>
+
+                <button type="button" class="btn btn-success btn-fw">Success</button>
+                  {{buscakb}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+
+        
+      </div><!--Fin ROw-->
+    </div><!-- content-wrapper ends -->
+    <!-- partial:../../partials/_footer.html -->
+   
+    <!-- partial -->
+  </div>
+  <!-- main-panel ends -->
+</div>
+<!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+    <!-- container-scroller -->
+  {% endblock %} 
